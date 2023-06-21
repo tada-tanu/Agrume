@@ -314,10 +314,11 @@ public final class Agrume: UIViewController {
   ///
   /// - Parameters:
   ///   - viewController: The UIViewController to present from
-  public func show(from viewController: UIViewController) {
+  ///   - completion: Called when Agrume is fully presented
+  public func show(from viewController: UIViewController, completion: (() -> Void)? = nil) {
     view.isUserInteractionEnabled = false
     addSubviews()
-    present(from: viewController)
+    present(from: viewController, completion: completion)
   }
 
   /// Update image at index
@@ -405,7 +406,7 @@ public final class Agrume: UIViewController {
     }
   }
   
-  private func present(from viewController: UIViewController) {
+  private func present(from viewController: UIViewController, completion: (() -> Void)?) {
     DispatchQueue.main.async {
       self.blurContainerView.alpha = 0
       self.containerView.alpha = 0
@@ -427,6 +428,7 @@ public final class Agrume: UIViewController {
           },
           completion: { _ in
             self.view.isUserInteractionEnabled = true
+            completion?()
           }
         )
       }
