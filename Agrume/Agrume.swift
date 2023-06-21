@@ -12,6 +12,7 @@ public final class Agrume: UIViewController {
     case dismissAlways
     case zoomOut
     case toggleOverlayVisibility
+    case none
   }
 
   private var images: [AgrumeImage]!
