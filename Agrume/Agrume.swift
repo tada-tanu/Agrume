@@ -15,7 +15,7 @@ public final class Agrume: UIViewController {
     case none
   }
 
-  private var images: [AgrumeImage]!
+  private var images: [AgrumeImage] = []
   private let startIndex: Int
   private let dismissal: Dismissal
   private let enableLiveText: Bool
