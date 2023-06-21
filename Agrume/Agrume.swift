@@ -222,6 +222,7 @@ public final class Agrume: UIViewController {
     self.dataSource = dataSource ?? self
     
     modalPresentationStyle = .custom
+    modalTransitionStyle = .crossDissolve
     modalPresentationCapturesStatusBarAppearance = true
   }
 
@@ -404,7 +405,7 @@ public final class Agrume: UIViewController {
   
   private func present(from viewController: UIViewController) {
     DispatchQueue.main.async {
-      self.blurContainerView.alpha = 1
+      self.blurContainerView.alpha = 0
       self.containerView.alpha = 0
       let scale: CGFloat = self.delegate?.presentingInitialScale ?? .initialScaleToExpandFrom
 
@@ -417,6 +418,7 @@ public final class Agrume: UIViewController {
           delay: 0,
           options: .beginFromCurrentState,
           animations: {
+            self.blurContainerView.alpha = 1
             self.containerView.alpha = 1
             self.containerView.transform = .identity
             self.addOverlayView()
