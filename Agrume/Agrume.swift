@@ -31,6 +31,8 @@ public final class Agrume: UIViewController {
   
   public typealias DownloadCompletion = (_ image: UIImage?) -> Void
 
+  public weak var delegate: AgrumeDelegate?
+
   /// Optional closure to call when user long pressed on an image
   public var onLongPress: ((UIImage?, UIViewController) -> Void)?
   /// Optional closure to call whenever Agrume is about to dismiss.
@@ -404,7 +406,7 @@ public final class Agrume: UIViewController {
     DispatchQueue.main.async {
       self.blurContainerView.alpha = 1
       self.containerView.alpha = 0
-      let scale: CGFloat = .initialScaleToExpandFrom
+      let scale: CGFloat = self.delegate?.presentingInitialScale ?? .initialScaleToExpandFrom
 
       viewController.present(self, animated: false) {
         // Transform the container view, not the collection view to prevent an RTL display bug
