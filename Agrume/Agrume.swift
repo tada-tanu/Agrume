@@ -400,7 +400,9 @@ public final class Agrume: UIViewController {
     view.addSubview(blurContainerView)
     view.addSubview(containerView)
     containerView.addSubview(collectionView)
-    view.addSubview(spinner)
+    if delegate?.isDisplaySpinner ?? true {
+      view.addSubview(spinner)
+    }
   }
   
   private func present(from viewController: UIViewController) {
